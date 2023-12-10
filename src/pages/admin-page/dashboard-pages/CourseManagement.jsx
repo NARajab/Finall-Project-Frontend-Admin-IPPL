@@ -34,7 +34,9 @@ const CourseManagement = () => {
         formData.courseLevel,
         formData.description,
         formData.objectiveCourse,
+        formData.rating,
         formData.image,
+        formData.chapterTitle,
         token
       );
 

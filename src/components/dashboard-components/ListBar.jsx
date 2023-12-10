@@ -63,7 +63,7 @@ const ListBar = ({ closeDropDown }) => {
         </li>
       </ul>
       <div className="md:flex md:flex-row md:justify-center">
-        <Link to={"/login"}>
+        <Link to={"/"}>
           <button
             onClick={logOut}
             type="button"

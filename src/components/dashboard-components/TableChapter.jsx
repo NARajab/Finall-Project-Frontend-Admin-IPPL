@@ -1,22 +1,36 @@
 /* eslint-disable react/prop-types */
-// import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
 // import { IoSearchSharp } from "react-icons/io5";
 import { IoMdAddCircleOutline } from "react-icons/io";
 
 import "aos/dist/aos.css";
-const Table = ({
+const TableChapter = ({
   colom,
   dataTable,
   button,
   setOpenModal,
-  setOpenModalCourse,
+  setOpenModalChapter,
+  setOpenModalContent,
 }) => {
-  const sortedData = dataTable.sort((a, b) => b.id - a.id);
+  // eslint-disable-next-line no-unused-vars
+  const [currentChapterId, setCurrentChapterId] = useState(null);
+  const sortedData = Array.isArray(dataTable)
+    ? dataTable.sort((a, b) => a.id - b.id)
+    : [];
+  console.log(dataTable);
 
   if (!dataTable) {
     return null;
   }
+
+  const handleAddContentClick = (chapterId) => {
+    // Simpan chapterId ke localStorage
+    setCurrentChapterId(chapterId);
+    localStorage.setItem("chapterId", chapterId);
+
+    // Panggil fungsi untuk membuka modal content dan kirimkan chapterId
+    setOpenModalContent(chapterId);
+  };
 
   return (
     <div className="relative overflow-x-auto">
@@ -25,7 +39,7 @@ const Table = ({
           <div className="p-1 me-16">
             <button
               type="button"
-              onClick={setOpenModalCourse}
+              onClick={setOpenModalChapter}
               className="flex items-center px-4 py-1 text-white bg-blue-500 rounded-full hover:bg-blue-700"
             >
               <IoMdAddCircleOutline />
@@ -72,22 +86,38 @@ const Table = ({
                 scope="row"
                 className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
               >
-                {data.courseCode}
+                {i + 1}
               </th>
 
-              <td className="px-6 py-4">{data.Category}</td>
-              <td className="px-6 py-4">{data.courseName ?? "-"}</td>
-              <td className="px-6 py-4">{data.courseLevel ?? "-"}</td>
+              <td className="px-6 py-4">{data.chapterTitle}</td>
+              <td className="px-6 py-4">
+                {/* {data.Contents.map((content, j) => {
+                  <div key={j}>
+                    <p>{content.contentTitle}</p>
+                  </div>;
+                })} */}
+                {data.Contents.map((content, j) => (
+                  <div key={j}>
+                    <p>{content.contentTitle}</p>
+                  </div>
+                ))}
+              </td>
+              <td className="px-6 py-4">
+                {data.Contents.map((content, j) => (
+                  <div key={j}>
+                    <p>{content.contentUrl}</p>
+                  </div>
+                ))}
+              </td>
               {button && (
                 <td className="px-6 py-4 space-x-3">
-                  <Link
-                    to={`/chapter-management/${data.id}`}
-                    onClick={setOpenModal}
+                  <button
+                    onClick={() => handleAddContentClick(data.id)}
                     type="button"
                     className="focus:outline-none text-white bg-indigo-600 hover:bg-indigo-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-xs px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
                   >
-                    Tambah Chapter
-                  </Link>
+                    Tambah Content
+                  </button>
                   <button
                     onClick={setOpenModal}
                     type="button"
@@ -105,4 +135,4 @@ const Table = ({
   );
 };
 
-export default Table;
+export default TableChapter;

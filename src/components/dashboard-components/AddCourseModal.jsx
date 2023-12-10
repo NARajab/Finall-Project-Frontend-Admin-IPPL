@@ -11,7 +11,9 @@ const AddCourseModal = ({ openModalCourse, setCloseModalCourse, onSave }) => {
     courseLevel: "",
     description: "",
     objectiveCourse: "",
-    image: null, // Assuming image is a file
+    rating: "",
+    image: null,
+    chapterTitle: "",
   });
 
   const handlechange = (e) => {
@@ -85,6 +87,15 @@ const AddCourseModal = ({ openModalCourse, setCloseModalCourse, onSave }) => {
                     <option value="Advanced">Advanced</option>
                   </select>
                 </div>
+                <div className="mb-3">
+                  <label>Nama Chapter</label>
+                  <input
+                    type="text"
+                    className="w-full rounded-2xl"
+                    name="chapterTitle"
+                    onChange={handlechange}
+                  />
+                </div>
               </div>
               <div className="w-1/2">
                 <div className="mb-3">
@@ -102,6 +113,15 @@ const AddCourseModal = ({ openModalCourse, setCloseModalCourse, onSave }) => {
                     type="text"
                     className="w-full rounded-2xl"
                     name="objectiveCourse"
+                    onChange={handlechange}
+                  />
+                </div>
+                <div className="mb-3">
+                  <label>Rating</label>
+                  <input
+                    type="text"
+                    className="w-full rounded-2xl"
+                    name="rating"
                     onChange={handlechange}
                   />
                 </div>

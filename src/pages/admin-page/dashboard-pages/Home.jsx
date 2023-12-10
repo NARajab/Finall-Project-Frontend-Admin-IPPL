@@ -14,7 +14,6 @@ const Home = () => {
     const fetchData = async () => {
       try {
         const res = await getUserCourse();
-        // console.log(res);
         setCourseData(res);
       } catch (err) {
         throw new Error(err.message);
