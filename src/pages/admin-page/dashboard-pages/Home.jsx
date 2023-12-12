@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 
-import { BiMoneyWithdraw } from "react-icons/bi";
-
 import CardStatistic from "../../../components/dashboard-components/CardStatistic";
 import Table from "../../../components/dashboard-components/Table";
 import { getUserCourse } from "../../../api/fetching";
@@ -43,7 +41,6 @@ const Home = () => {
           <div className="mt-16 md:mt-12 xl:mt-24 max-md:ml-8">
             <div className="flex flex-row space-x-2 items-centers">
               <p className="text-xl font-bold md:text-2xl ">Data Pengguna</p>
-              <BiMoneyWithdraw className="text-4xl text-green-500" />
             </div>
             <Table colom={tableColumns} dataTable={courseData} button={false} />
           </div>
