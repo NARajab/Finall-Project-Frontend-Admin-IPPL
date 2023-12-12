@@ -5,6 +5,7 @@ import { FiEye, FiEyeOff } from "react-icons/fi";
 import axios from "axios";
 
 import { loginUser } from "../../api/fetching";
+import logo from "../../assets/no bg putih.png";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -63,10 +64,10 @@ const Login = () => {
   return (
     <div className="flex h-full">
       <div className="absolute items-center hidden h-screen bg-indigo-700 lg:w-2/6 lg:py-48 lg:px-16 xl:px-28 xl:py-60 md:hidden lg:block lg:relative md:absolute -z-50">
-        <img className="" src="/logo-course.svg" alt="icon" />
+        <img className="" src={logo} alt="icon" />
       </div>
       <div className="absolute px-20 -mt-5 md:-mt-20 md:px-44 lg:hidden">
-        <img src="/logo-course.svg" alt="icon" className="" />
+        <img src={logo} alt="icon" className="" />
       </div>
       <div className="w-full h-screen px-10 py-48 bg-indigo-700 lg:w-4/6 md:px-44 md:py-60 lg:py-44 lg:px-36 xl:px-64 xl:py-64 md:bg-indigo-700 lg:bg-white">
         <h1 className="flex justify-center text-2xl font-extrabold text-white lg:text-indigo-700 lg:mb-4 md:text-white font-montserrat">
