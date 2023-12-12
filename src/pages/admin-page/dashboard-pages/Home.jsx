@@ -42,9 +42,7 @@ const Home = () => {
           <CardStatistic />
           <div className="mt-16 md:mt-12 xl:mt-24 max-md:ml-8">
             <div className="flex flex-row space-x-2 items-centers">
-              <p className="text-xl font-bold md:text-2xl ">
-                Status pembayaran
-              </p>
+              <p className="text-xl font-bold md:text-2xl ">Data Pengguna</p>
               <BiMoneyWithdraw className="text-4xl text-green-500" />
             </div>
             <Table colom={tableColumns} dataTable={courseData} button={false} />
