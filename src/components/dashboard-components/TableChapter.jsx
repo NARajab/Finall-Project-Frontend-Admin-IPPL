@@ -27,9 +27,13 @@ const TableChapter = ({
     // Simpan chapterId ke localStorage
     setCurrentChapterId(chapterId);
     localStorage.setItem("chapterId", chapterId);
-
-    // Panggil fungsi untuk membuka modal content dan kirimkan chapterId
     setOpenModalContent(chapterId);
+  };
+  const handleDeleteChapter = (chapterId) => {
+    // Simpan chapterId ke localStorage
+    setCurrentChapterId(chapterId);
+    localStorage.setItem("chapterId", chapterId);
+    setOpenModal(chapterId);
   };
 
   return (
@@ -119,7 +123,7 @@ const TableChapter = ({
                     Tambah Content
                   </button>
                   <button
-                    onClick={setOpenModal}
+                    onClick={() => handleDeleteChapter(data.id)}
                     type="button"
                     className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-xs px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
                   >

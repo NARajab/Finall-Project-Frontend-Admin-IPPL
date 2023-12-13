@@ -95,6 +95,21 @@ const createContent = async (
   return res;
 };
 
+const deleteCourse = async (courseId, token) => {
+  const res = await api.delete(`course/delete/${courseId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "multipart/form-data",
+    },
+  });
+  return res;
+};
+
+const deleteChapter = async (chapterId) => {
+  const res = await api.delete(`chapter/delete/${chapterId}`);
+  return res.data;
+};
+
 export {
   getCourseData,
   getUserCourse,
@@ -104,4 +119,6 @@ export {
   createCourse,
   createChapter,
   createContent,
+  deleteCourse,
+  deleteChapter,
 };

@@ -4,7 +4,11 @@ import CardStatistic from "../../../components/dashboard-components/CardStatisti
 import TableCourse from "../../../components/dashboard-components/TableCourse";
 import ValidationDeleteModal from "../../../components/dashboard-components/ValidationDeleteModal";
 import AddCourseModal from "../../../components/dashboard-components/AddCourseModal";
-import { getCourseData, createCourse } from "../../../api/fetching";
+import {
+  getCourseData,
+  createCourse,
+  deleteCourse,
+} from "../../../api/fetching";
 
 const CourseManagement = () => {
   const [courseData, setCourseData] = useState([]);
@@ -49,6 +53,19 @@ const CourseManagement = () => {
     }
   };
 
+  const handleDeleteCourse = async () => {
+    const token = localStorage.getItem("...");
+    const courseId = localStorage.getItem("courseId");
+    try {
+      await deleteCourse(courseId, token);
+      localStorage.removeItem("courseId");
+      setOpenModal(false);
+      window.location.reload();
+    } catch (error) {
+      console.error("Error saving course:", error.message);
+    }
+  };
+
   if (courseData.length == 0) {
     return;
   }
@@ -69,6 +86,7 @@ const CourseManagement = () => {
       />
       <ValidationDeleteModal
         openModal={openModal}
+        saveDelete={handleDeleteCourse}
         setCloseModal={() => setOpenModal(false)}
       />
       <CardStatistic />

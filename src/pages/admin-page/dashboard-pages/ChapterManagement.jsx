@@ -9,6 +9,7 @@ import {
   getChapter,
   createChapter,
   createContent,
+  deleteChapter,
 } from "../../../api/fetching";
 
 const ChapterManagement = () => {
@@ -40,6 +41,17 @@ const ChapterManagement = () => {
       window.location.reload();
 
       setOpenModalChapter(false);
+    } catch (error) {
+      console.error("Error saving course:", error.message);
+    }
+  };
+  const handleDeleteChapter = async () => {
+    const chapterId = localStorage.getItem("chapterId");
+    try {
+      await deleteChapter(chapterId);
+      localStorage.removeItem("chapterId");
+      setOpenModal(false);
+      window.location.reload();
     } catch (error) {
       console.error("Error saving course:", error.message);
     }
@@ -88,6 +100,7 @@ const ChapterManagement = () => {
       />
       <ValidationDeleteModal
         openModal={openModal}
+        saveDelete={handleDeleteChapter}
         setCloseModal={() => setOpenModal(false)}
       />
       <div className="px-5 mt-3 md:mt-5 xl:mt-5 max-md:ml-8">

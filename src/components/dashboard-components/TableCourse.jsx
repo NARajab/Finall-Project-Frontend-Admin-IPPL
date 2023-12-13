@@ -1,5 +1,6 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-// import { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 // import { IoSearchSharp } from "react-icons/io5";
 import { IoMdAddCircleOutline } from "react-icons/io";
@@ -12,7 +13,15 @@ const Table = ({
   setOpenModal,
   setOpenModalCourse,
 }) => {
+  const [currentCourseId, setCurrentCourseId] = useState(null);
   const sortedData = dataTable.sort((a, b) => b.id - a.id);
+
+  const handleDeleteCourse = (courseId) => {
+    // Simpan chapterId ke localStorage
+    setCurrentCourseId(courseId);
+    localStorage.setItem("courseId", courseId);
+    setOpenModal(courseId);
+  };
 
   if (!dataTable) {
     return null;
@@ -89,7 +98,7 @@ const Table = ({
                     Tambah Chapter
                   </Link>
                   <button
-                    onClick={setOpenModal}
+                    onClick={() => handleDeleteCourse(data.id)}
                     type="button"
                     className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-xs px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
                   >
